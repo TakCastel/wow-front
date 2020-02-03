@@ -1,6 +1,6 @@
-# esora
+# Brumes RP
 
-> My rpg forum templates
+> My WikiGuild MMO Template
 
 ## Build Setup
 
