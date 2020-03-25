@@ -90,7 +90,14 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    extend (config, { isDev, isClient, isServer }) {
+      if (isServer) {
+        config.externals = {
+          '@firebase/app': 'commonjs @firebase/app',
+          '@firebase/firestore': 'commonjs @firebase/firestore'
+        // etc...
+        }
+      }
     }
   }
 }
