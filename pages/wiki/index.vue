@@ -20,27 +20,15 @@ export default {
     StoryCard
   },
 
-  data: () => ({
-    events: [
-      {
-        title: 'Le Cairn des Âmes',
-        url: '/wiki/cairn-des-ames',
-        active: false,
-        img: require('../../assets/images/wallpapers/trame1.jpg')
-      },
-      {
-        title: 'Le Coeur de Jhunal',
-        url: '/wiki/coeur-de-jhunal',
-        active: false,
-        img: require('../../assets/images/wallpapers/trame2.jpg')
-      },
-      {
-        title: 'Les Ruines de Rkunzelft',
-        url: '/wiki/ruines-de-rkunzelft',
-        active: true,
-        img: require('../../assets/images/wallpapers/trame3.jpg')
-      }
-    ]
-  })
+  computed: {
+    events () {
+      return this.$store.state.events.articles
+    }
+  },
+
+  beforeMount () {
+    this.$store.dispatch('events/requestAllEvents')
+    console.log('coucou')
+  }
 }
 </script>
