@@ -18,35 +18,6 @@ export default {
 
   components: {
     CharaCard
-  },
-
-  data: () => ({
-    characters: [
-      {
-        name: 'Siddon Celestin',
-        url: '/character/siddon-celestin',
-        active: true,
-        img: require('../../assets/images/characters/SiddonCelestin.png')
-      },
-      {
-        name: 'Ko Kaasha',
-        url: '/character/ko-kaasha',
-        active: true,
-        img: require('../../assets/images/characters/KoKaasha.png')
-      },
-      {
-        name: 'Ra Chiranir',
-        url: '/character/ra-chiranir',
-        active: true,
-        img: require('../../assets/images/characters/RaChiranir.png')
-      },
-      {
-        name: 'DraKiseena',
-        url: '/character/dra-kiseena',
-        active: true,
-        img: require('../../assets/images/characters/DraKiseena.png')
-      }
-    ]
-  })
+  }
 }
 </script>

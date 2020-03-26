@@ -61,6 +61,7 @@ module.exports = {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    baseURL: 'https://brumes-api.herokuapp.com/'
   },
   /*
   ** vuetify module configuration
