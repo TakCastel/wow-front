@@ -15,12 +15,13 @@
     "test:e2e": "cross-env TEST=e2e ava --config e2e.config.js"
   },
   "dependencies": {
-    "nuxt": "^2.0.0",
+    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/dotenv": "^1.4.0",
+    "@nuxtjs/pwa": "^3.0.0-0",
+    "cookieparser": "^0.1.0",
     "cross-env": "^5.2.0",
     "express": "^4.16.4",
-    "@nuxtjs/axios": "^5.3.6",
-    "@nuxtjs/pwa": "^3.0.0-0",
-    "@nuxtjs/dotenv": "^1.4.0"
+    "nuxt": "^2.0.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.9",
