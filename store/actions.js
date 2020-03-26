@@ -6,7 +6,7 @@ const actions = {
       user: 'Anonymous',
       jwt: undefined
     }
-    if (req.headers.cookie) {
+    if (req && req.headers && req.headers.cookie) {
       const parsed = cookieparser.parse(req.headers.cookie)
       try {
         session = JSON.parse(parsed.auth)
