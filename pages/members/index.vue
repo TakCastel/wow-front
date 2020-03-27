@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import CharaCard from '@/components/Dashboard/CharaCard'
+import CharaCard from '@/components/Cards/CharaCard'
 
 export default {
   meta: {

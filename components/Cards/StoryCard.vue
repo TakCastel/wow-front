@@ -18,7 +18,7 @@
             </div>
           </div>
           <div>
-            <v-btn :to="content.url" outlined>
+            <v-btn @click="handleClick" outlined>
               Voir
             </v-btn>
           </div>
@@ -35,11 +35,18 @@ export default {
       type: Object,
       required: true,
       default: () => ({
+        id: undefined,
         title: 'Sans titre',
-        active: true,
-        url: '/wiki/id',
+        body: 'text',
+        slug: 'sans-titre',
         img: ''
       })
+    }
+  },
+
+  methods: {
+    handleClick () {
+      this.$router.push({ path: `/wiki/${this.content.slug}` })
     }
   }
 }
