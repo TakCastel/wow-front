@@ -31,7 +31,7 @@
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
       <side-menu />
-      <template v-slot:extension>
+      <!-- <template v-slot:extension>
         <v-tabs
           align-with-title
           background-color="transparent"
@@ -39,7 +39,7 @@
           <v-tab>Site web</v-tab>
           <v-tab>Infos légales</v-tab>
         </v-tabs>
-      </template>
+      </template> -->
     </v-app-bar>
     <v-content>
       <v-container fill-height>

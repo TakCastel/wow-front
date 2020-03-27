@@ -1,6 +1,7 @@
 export const state = () => ({
   articlesByCategories: [],
   loadingCurrentArticle: false,
+  loadingEventArticles: false,
   currentArticle: {}
 })
 
@@ -10,6 +11,7 @@ export const actions = {
  * @param {*} param0
  */
   requestAllArticles ({ commit }) {
+    commit('SET_EVENT_ARTICLES_LOADING', true)
     this.$axios
       .get('/categories', {
         params: {
@@ -18,6 +20,7 @@ export const actions = {
       })
       .then((response) => {
         commit('SET_ARTICLES', response.data)
+        commit('SET_EVENT_ARTICLES_LOADING', false)
       })
       .catch((error) => {
         console.error('An error occurred:', error)
@@ -59,6 +62,10 @@ export const mutations = {
   },
 
   SET_CURRENT_ARTICLE_LOADING (state, status) {
+    state.loadingCurrentArticle = status
+  },
+
+  SET_EVENT_ARTICLES_LOADING (state, status) {
     state.loadingCurrentArticle = status
   }
 }
