@@ -2,8 +2,8 @@
   <v-col xs="12" sm="6" md="4">
     <v-card>
       <v-img
-        :src="content.img"
-        :lazy-src="content.img"
+        :src="caption"
+        :lazy-src="caption"
         gradient="to top right, rgba(86, 48, 40, 0.8), rgba(128, 208, 199, .2)"
         aspect-ratio="1.6"
         class="grey lighten-2"
@@ -41,6 +41,12 @@ export default {
         slug: 'sans-titre',
         img: ''
       })
+    }
+  },
+
+  computed: {
+    caption () {
+      return this.content.Caption ? this.content.Caption.url : ''
     }
   },
 
