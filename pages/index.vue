@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import InfoCard from '@/components/Dashboard/InfoCard'
+import InfoCard from '@/components/Cards/InfoCard'
 
 export default {
   meta: {

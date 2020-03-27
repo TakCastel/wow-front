@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import StoryCard from '@/components/Dashboard/StoryCard'
+import StoryCard from '@/components/Cards/StoryCard'
 
 export default {
   meta: {
@@ -21,14 +21,19 @@ export default {
   },
 
   computed: {
+    // events () {
+    //   return this.$store.getters.articles.articlesInEventCategory
+    // }
     events () {
-      return this.$store.state.events.articles
+      const events = { ...this.$store.state.articles.articlesByCategories.filter(
+        category => category.name === 'events'
+      )[0] }
+      return events.articles
     }
   },
 
-  beforeMount () {
-    this.$store.dispatch('events/requestAllEvents')
-    console.log('coucou')
+  created () {
+    this.$store.dispatch('articles/requestAllArticles')
   }
 }
 </script>
