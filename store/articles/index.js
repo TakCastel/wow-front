@@ -42,7 +42,6 @@ export const actions = {
         }
       })
       .then((response) => {
-        console.log(response.data)
         commit('SET_CURRENT_ARTICLE', response.data)
         commit('SET_CURRENT_ARTICLE_LOADING', false)
       })

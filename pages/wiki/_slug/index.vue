@@ -3,7 +3,7 @@
     <v-col cols="8">
       <v-skeleton-loader
         :loading="isLoading"
-        transition="fade-transition"
+        height="300px"
         type="article"
       >
         <v-card>
@@ -15,7 +15,26 @@
       </v-skeleton-loader>
     </v-col>
     <v-col cols="4">
-      <v-card />
+      <v-skeleton-loader
+        :loading="isLoading"
+        height="300px"
+        type="card-avatar, article, actions"
+      >
+        <v-card>
+          <v-img
+            :src="caption"
+            class="white--text align-end"
+            height="200px"
+          />
+          <v-card-subtitle class="pb-0">
+            Description de l'image
+          </v-card-subtitle>
+          <v-card-text class="text--primary">
+            <div>Liste de choses</div>
+            <div>Elements</div>
+          </v-card-text>
+        </v-card>
+      </v-skeleton-loader>
     </v-col>
   </v-row>
 </template>
@@ -43,6 +62,10 @@ export default {
 
     isLoading () {
       return this.$store.state.articles.loadingCurrentArticle
+    },
+
+    caption () {
+      return this.article.Caption ? this.article.Caption.url : ''
     },
 
     compiledMarkdown () {
