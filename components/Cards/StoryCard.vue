@@ -46,7 +46,7 @@ export default {
 
   computed: {
     caption () {
-      return this.content.Caption ? this.content.Caption.url : ''
+      return this.content.thumbnail ? this.content.thumbnail.url : ''
     }
   },
 

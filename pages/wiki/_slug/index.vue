@@ -10,15 +10,14 @@
           <v-toolbar color="primary">
             <v-toolbar-title>{{ article.title }}</v-toolbar-title>
           </v-toolbar>
-          <v-card-text v-if="article.body" v-html="compiledMarkdown" />
+          <v-card-text v-if="article.body" v-html="compiledMarkdown(article.body)" class="article mt-5" />
         </v-card>
       </v-skeleton-loader>
     </v-col>
     <v-col cols="4">
       <v-skeleton-loader
         :loading="isLoading"
-        height="300px"
-        type="card-avatar, article, actions"
+        type="image, article"
       >
         <v-card>
           <v-img
@@ -26,12 +25,9 @@
             class="white--text align-end"
             height="200px"
           />
-          <v-card-subtitle class="pb-0">
-            Description de l'image
-          </v-card-subtitle>
-          <v-card-text class="text--primary">
-            <div>Liste de choses</div>
-            <div>Elements</div>
+          <v-card-text v-if="article.infobox" v-html="compiledMarkdown(article.infobox)" class="text--primary" />
+          <v-card-text v-else>
+            {{ article.title }}
           </v-card-text>
         </v-card>
       </v-skeleton-loader>
@@ -65,17 +61,32 @@ export default {
     },
 
     caption () {
-      return this.article.Caption ? this.article.Caption.url : ''
-    },
-
-    compiledMarkdown () {
-      return marked(this.article.body)
+      return this.article.thumbnail ? this.article.thumbnail.url : ''
     }
   },
 
   mounted () {
     this.$store.dispatch('articles/requestArticleBySlug', this.$route.params.slug)
+  },
+
+  methods: {
+    compiledMarkdown (text) {
+      return marked(text)
+    }
   }
 
 }
 </script>
+
+<style>
+.article h1 {
+  margin-bottom: 8px;
+  font-size: 1.4em;
+  position: relative;
+}
+.article h2 {
+  margin-bottom: 8px;
+  font-size: 1.2em;
+  position: relative;
+}
+</style>

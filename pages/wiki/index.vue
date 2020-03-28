@@ -10,8 +10,10 @@
           md="4"
         >
           <v-skeleton-loader
+            transition="fade-transition"
             class="mx-auto"
-            type="card"
+            type="image"
+            height="172px"
           />
         </v-col>
       </v-row>
@@ -53,7 +55,7 @@ export default {
     }
   },
 
-  created () {
+  mounted () {
     this.$store.dispatch('articles/requestAllArticles')
   }
 }
