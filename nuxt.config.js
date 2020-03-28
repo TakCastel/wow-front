@@ -25,7 +25,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/assets/transitions.scss'
+    '~/assets/transitions.scss',
+    '~/assets/custom.scss'
   ],
   /*
   ** Plugins to load before mounting the App

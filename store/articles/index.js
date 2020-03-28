@@ -1,7 +1,7 @@
 export const state = () => ({
+  loadingEventArticles: false,
   articlesByCategories: [],
   loadingCurrentArticle: false,
-  loadingEventArticles: false,
   currentArticle: {}
 })
 
@@ -30,7 +30,7 @@ export const actions = {
   /**
    * Request the current reading article
    * @param {*} param0
-   * @param {*} id
+   * @param {*} slug
    */
   requestArticleBySlug ({ commit }, slug) {
     commit('SET_CURRENT_ARTICLE_LOADING', true)

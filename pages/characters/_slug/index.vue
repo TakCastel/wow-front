@@ -8,9 +8,9 @@
       >
         <v-card>
           <v-toolbar color="primary">
-            <v-toolbar-title>{{ article.title }}</v-toolbar-title>
+            <v-toolbar-title>{{ character.name }}</v-toolbar-title>
           </v-toolbar>
-          <v-card-text v-if="article.body" v-html="compiledMarkdown(article.body)" class="article mt-5" />
+          <v-card-text v-if="character.description" v-html="compiledMarkdown(character.description)" class="article mt-5" />
         </v-card>
       </v-skeleton-loader>
     </v-col>
@@ -25,9 +25,8 @@
             class="white--text align-end"
             height="200px"
           />
-          <v-card-text v-if="article.infobox" v-html="compiledMarkdown(article.infobox)" class="text--primary" />
-          <v-card-text v-else>
-            {{ article.title }}
+          <v-card-text>
+            {{ character.name }}
           </v-card-text>
         </v-card>
       </v-skeleton-loader>
@@ -47,27 +46,27 @@ export default {
     title: 'Trames',
     breadcrumb: [
       { title: 'Accueil', url: '/' },
-      { title: 'Trames', url: '/wiki' },
-      { title: 'Article', active: true }
+      { title: 'Personnages', url: '/characters' },
+      { title: 'Feuille de personnage', active: true }
     ]
   },
 
   computed: {
-    article () {
-      return this.$store.state.articles.currentArticle
-    },
-
-    isLoading () {
-      return this.$store.state.articles.loadingCurrentArticle
+    character () {
+      return this.$store.state.chara.currentCharacter ? this.$store.state.chara.currentCharacter : false
     },
 
     caption () {
-      return this.article.thumbnail ? this.article.thumbnail.url : ''
+      return this.character.avatar ? this.character.avatar.url : ''
+    },
+
+    isLoading () {
+      return this.$store.state.chara.loadingCurrentCharacter
     }
   },
 
   mounted () {
-    this.$store.dispatch('articles/requestArticleBySlug', this.$route.params.slug)
+    this.$store.dispatch('chara/requestCharacterBySlug', this.$route.params.slug)
   },
 
   methods: {
@@ -75,6 +74,5 @@ export default {
       return marked(text)
     }
   }
-
 }
 </script>

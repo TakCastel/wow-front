@@ -32,8 +32,8 @@ export default {
     },
     {
       icon: 'mdi-account-group',
-      title: 'Membres',
-      to: '/members'
+      title: 'Personnages',
+      to: '/characters'
     },
     {
       icon: 'mdi-calendar',
