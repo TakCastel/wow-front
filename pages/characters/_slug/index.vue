@@ -19,7 +19,7 @@
         :loading="isLoading"
         type="image, article"
       >
-        <v-card>
+        <v-card class="mb-3">
           <v-img
             :src="caption"
             class="white--text align-end"
@@ -30,17 +30,21 @@
           </v-card-text>
         </v-card>
       </v-skeleton-loader>
+      <TalentCard v-for="talent in sortedTalents" :key="talent.id" :talent="talent" />
     </v-col>
   </v-row>
 </template>
 
 <script>
 import marked from 'marked'
+import TalentCard from '@/components/Cards/TalentCard'
 
 export default {
   validate ({ params }) {
     return true
   },
+
+  name: 'CharacterPage',
 
   meta: {
     title: 'Trames',
@@ -49,6 +53,10 @@ export default {
       { title: 'Personnages', url: '/characters' },
       { title: 'Feuille de personnage', active: true }
     ]
+  },
+
+  components: {
+    TalentCard
   },
 
   computed: {
@@ -62,6 +70,12 @@ export default {
 
     isLoading () {
       return this.$store.state.chara.loadingCurrentCharacter
+    },
+
+    sortedTalents () {
+      return this.character.talents
+        ? this.character.talents.slice().sort((a, b) => (a.type > b.type) ? 1 : -1)
+        : undefined
     }
   },
 

@@ -76,7 +76,7 @@ module.exports = {
         dark: {
           primary: '#9e584a',
           accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
+          secondary: '#80d0c7',
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
