@@ -2,6 +2,7 @@
   <v-navigation-drawer
     v-model="isDrawerOpen"
     :bottom="$vuetify.breakpoint.xsOnly"
+    color="#333333"
     clipped
     fixed
     app

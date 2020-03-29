@@ -1,5 +1,5 @@
 <template>
-  <v-card id="breadcrumb" class="mb-5" flat>
+  <v-card id="breadcrumb" class="mb-5" flat color="#272727">
     <v-card-text>
       <span
         v-for="path in generatedBreadcrumb"
