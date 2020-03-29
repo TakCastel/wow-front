@@ -1,28 +1,11 @@
 <template>
   <v-row>
-    <v-col v-if="isLoading">
-      <v-row>
-        <v-col
-          v-for="n in 6"
-          :key="n.index"
-          xs="12"
-          sm="6"
-          md="4"
-        >
-          <v-skeleton-loader
-            transition="fade-transition"
-            class="mx-auto"
-            type="image"
-            height="172px"
-          />
-        </v-col>
-      </v-row>
+    <v-col v-if="activeEvents && activeEvents.length < 1" xs="12" sm="6" md="4">
+      <v-card>
+        <v-card-text>Aucun article disponible</v-card-text>
+      </v-card>
     </v-col>
-    <v-col v-else>
-      <v-row>
-        <story-card v-for="(event, index) in events" :key="index" :content="event" />
-      </v-row>
-    </v-col>
+    <story-card v-else v-for="(event, index) in activeEvents" :key="index" :content="event" />
   </v-row>
 </template>
 
@@ -48,6 +31,12 @@ export default {
         category => category.name === 'events'
       )[0] }
       return events.articles
+    },
+
+    activeEvents () {
+      return this.events
+        ? this.events.slice().filter(article => article.active === true)
+        : null
     },
 
     isLoading () {

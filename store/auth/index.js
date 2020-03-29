@@ -44,7 +44,7 @@ export const actions = {
       .then((response) => {
         dispatch('manageAuthentication', {
           response,
-          routeName: '/threads'
+          routeName: '/'
         })
       })
       .catch((error) => {

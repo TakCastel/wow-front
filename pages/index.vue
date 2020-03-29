@@ -1,7 +1,7 @@
 <template>
   <div id="dashbord">
     <div id="dashbord-main" class="mb-5">
-      <v-row>
+      <!-- <v-row>
         <v-col cols="12" sm="12" md="6" lg="4">
           <info-card color="#e8a935" icon="mdi-gold">
             <template v-slot:title>
@@ -32,7 +32,7 @@
             </template>
           </info-card>
         </v-col>
-      </v-row>
+      </v-row> -->
     </div>
     <div id="dashbord-secondary">
       <v-card>
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import InfoCard from '@/components/Cards/InfoCard'
+// import InfoCard from '@/components/Cards/InfoCard'
 
 export default {
   meta: {
@@ -59,7 +59,7 @@ export default {
   },
 
   components: {
-    InfoCard
+    // InfoCard
   }
 }
 </script>

@@ -23,11 +23,12 @@
           <v-img
             :src="caption"
             class="white--text align-end"
-            height="200px"
+            height="auto"
           />
-          <v-card-text>
-            {{ character.name }}
-          </v-card-text>
+          <v-card-title class="subtitle-2 pa-2">
+            Légende
+          </v-card-title>
+          <v-card-text v-html="character.infobox" class="pa-2 pt-0" />
         </v-card>
       </v-skeleton-loader>
       <TalentCard v-for="talent in sortedTalents" :key="talent.id" :talent="talent" />

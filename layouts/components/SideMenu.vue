@@ -17,7 +17,7 @@
       <v-list-item
         v-for="(item, i) in items"
         :key="i"
-        @click=""
+        @click="handleActions(item.action)"
       >
         <v-list-item-title>{{ item.title }}</v-list-item-title>
         <v-list-item-action>
@@ -29,14 +29,42 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   data: () => ({
     items: [
-      { title: 'Paramètres', icon: 'mdi-cog' },
-      { title: 'Profil', icon: 'mdi-account' },
-      { title: 'Portail', icon: 'mdi-view-dashboard' },
-      { title: 'Déconnexion', icon: 'mdi-logout-variant' }
+      { title: 'Paramètres', icon: 'mdi-cog', action: 'settings' },
+      { title: 'Profil', icon: 'mdi-account', action: 'profile' },
+      { title: 'Portail', icon: 'mdi-view-dashboard', action: 'portal' },
+      { title: 'Déconnexion', icon: 'mdi-logout-variant', action: 'logout' }
     ]
-  })
+  }),
+
+  methods: {
+    ...mapActions({
+      logout: 'auth/disconnectUser'
+    }),
+
+    /**
+     * When user click on menu item, redirect to any route
+     */
+    handleActions (action) {
+      switch (action) {
+        case 'logout':
+          this.logout()
+          break
+        case 'settings':
+          alert(`Cette option n'est pas supportée par la version alpha`)
+          break
+        case 'profile':
+          alert(`Cette option n'est pas supportée par la version alpha`)
+          break
+        case 'portal':
+          alert(`Cette option n'est pas supportée par la version alpha`)
+      }
+    }
+  }
+
 }
 </script>

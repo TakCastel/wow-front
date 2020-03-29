@@ -25,10 +25,10 @@
             class="white--text align-end"
             height="200px"
           />
-          <v-card-text v-if="article.infobox" v-html="compiledMarkdown(article.infobox)" class="text--primary" />
-          <v-card-text v-else>
-            {{ article.title }}
-          </v-card-text>
+          <v-card-title class="subtitle-2 pa-2">
+            Légende
+          </v-card-title>
+          <v-card-text v-html="article.infobox" class="pa-2 pt-0" />
         </v-card>
       </v-skeleton-loader>
     </v-col>
@@ -63,6 +63,10 @@ export default {
 
     caption () {
       return this.article.thumbnail ? this.article.thumbnail.url : ''
+    },
+
+    infobox () {
+      return this.article.infobox
     }
   },
 

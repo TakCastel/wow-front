@@ -27,10 +27,12 @@
         </h1>
       </v-toolbar-title>
       <v-spacer />
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-      <side-menu />
+      <!-- <side-menu v-if="isAuthenticated" />
+      <v-btn v-else @click="handleLogin" icon>
+        <v-icon>
+          mdi-account
+        </v-icon>
+      </v-btn> -->
       <!-- <template v-slot:extension>
         <v-tabs
           align-with-title
@@ -53,8 +55,10 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import Breadcrumb from './components/Breadcrumb'
-import SideMenu from './components/SideMenu'
+// import SideMenu from './components/SideMenu'
 import NavigationDrawer from './components/NavigationDrawer'
 
 export default {
@@ -62,7 +66,7 @@ export default {
 
   components: {
     Breadcrumb,
-    SideMenu,
+    // SideMenu,
     NavigationDrawer
   },
 
@@ -70,9 +74,20 @@ export default {
     appTitle: 'The Elder Scrolls'
   }),
 
+  computed: {
+    ...mapState({
+      isAuthenticated: state => state.auth.isAuthenticated,
+      user: state => state.auth.session.user
+    })
+  },
+
   methods: {
     handleDrawer () {
       this.$store.commit('TOGGLE_IS_DRAWER_OPEN', !this.$store.state.isDrawerOpen)
+    },
+
+    handleLogin () {
+      this.$router.push('/login')
     }
   }
 }

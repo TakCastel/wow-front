@@ -4,12 +4,12 @@ export default {
       icon: 'mdi-apps',
       title: 'Accueil',
       to: '/'
-    },
-    {
-      icon: 'mdi-book',
-      title: 'Règles',
-      to: '/rules'
     }
+    // {
+    //   icon: 'mdi-book',
+    //   title: 'Règles',
+    //   to: '/rules'
+    // }
   ],
   subNavigation: [
     // {
@@ -25,20 +25,20 @@ export default {
       title: 'Trames',
       to: '/wiki'
     },
-    {
-      icon: 'mdi-timer-sand-full',
-      title: 'Chronologie',
-      to: '/timeline'
-    },
+    // {
+    //   icon: 'mdi-timer-sand-full',
+    //   title: 'Chronologie',
+    //   to: '/timeline'
+    // },
     {
       icon: 'mdi-account-group',
       title: 'Personnages',
       to: '/characters'
-    },
-    {
-      icon: 'mdi-calendar',
-      title: 'Evènements',
-      to: '/calendar'
     }
+    // {
+    //   icon: 'mdi-calendar',
+    //   title: 'Evènements',
+    //   to: '/calendar'
+    // }
   ]
 }
