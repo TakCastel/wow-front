@@ -1,16 +1,16 @@
 <template>
-  <default-wrapper>
+  <WrapperDefault>
     <template v-slot:title>
       Règles de la Guilde
     </template>
     <template v-slot:text>
       Insérer les règles ici
     </template>
-  </default-wrapper>
+  </WrapperDefault>
 </template>
 
 <script>
-import DefaultWrapper from '@/components/Wrappers/DefaultWrapper'
+import WrapperDefault from '@/components/Wrappers/WrapperDefault'
 
 export default {
   meta: {
@@ -21,7 +21,7 @@ export default {
     ]
   },
   components: {
-    DefaultWrapper
+    WrapperDefault
   }
 }
 </script>
