@@ -43,8 +43,8 @@
         </v-tabs>
       </template> -->
     </v-app-bar>
-    <v-content>
-      <v-container fill-height class="grey darken-4">
+    <v-content class="grey darken-4">
+      <v-container fill-height>
         <v-layout column>
           <breadcrumb />
           <nuxt />
