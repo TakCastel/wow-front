@@ -21,7 +21,7 @@ export default {
     //   ]
     // },
     {
-      icon: 'mdi-book-open-page-variant',
+      icon: 'mdi-book-multiple',
       title: 'Trames',
       to: '/wiki'
     },
@@ -31,7 +31,7 @@ export default {
     //   to: '/timeline'
     // },
     {
-      icon: 'mdi-account-group',
+      icon: 'mdi-contacts',
       title: 'Personnages',
       to: '/characters'
     }

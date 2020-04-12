@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-    <navigation-drawer />
+    <NavigationDrawer />
     <v-app-bar
       :src="require('../assets/images/wallpapers/ESO_Morrowind_keyart.jpg')"
       color="#563028"
@@ -27,12 +27,12 @@
         </h1>
       </v-toolbar-title>
       <v-spacer />
-      <!-- <side-menu v-if="isAuthenticated" />
+      <side-menu v-if="isAuthenticated" />
       <v-btn v-else @click="handleLogin" icon>
         <v-icon>
           mdi-account
         </v-icon>
-      </v-btn> -->
+      </v-btn>
       <!-- <template v-slot:extension>
         <v-tabs
           align-with-title
@@ -43,11 +43,12 @@
         </v-tabs>
       </template> -->
     </v-app-bar>
-    <v-content class="grey darken-4">
+    <v-content class="#171717">
       <v-container fill-height>
         <v-layout column>
-          <breadcrumb />
+          <Breadcrumb />
           <nuxt />
+          <Notifications />
         </v-layout>
       </v-container>
     </v-content>
@@ -58,7 +59,8 @@
 import { mapState } from 'vuex'
 
 import Breadcrumb from './components/Breadcrumb'
-// import SideMenu from './components/SideMenu'
+import SideMenu from './components/SideMenu'
+import Notifications from './components/Notifications'
 import NavigationDrawer from './components/NavigationDrawer'
 
 export default {
@@ -66,8 +68,9 @@ export default {
 
   components: {
     Breadcrumb,
-    // SideMenu,
-    NavigationDrawer
+    SideMenu,
+    NavigationDrawer,
+    Notifications
   },
 
   data: () => ({

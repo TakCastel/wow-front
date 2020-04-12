@@ -49,7 +49,8 @@
     <v-row slot="footer" class="ma-0">
       <v-col cols="12" class="pa-0">
         <v-btn
-          :disabled="!valid"
+          :loading="isLoading"
+          :disabled="!valid || isLoading"
           @click="handleSubmit"
           color="primary"
           large
@@ -88,7 +89,7 @@ export default {
     showFormModale: true,
     isRegistering: false,
     valid: true,
-    identifier: '',
+    identifier: 'Siddon',
     identifierRules: [
       v => !!v || 'Un identifiant est demandé'
     ],
@@ -97,7 +98,7 @@ export default {
       v => !!v || 'Un email est demandé',
       v => /.+@.+/.test(v) || 'Le format mail est requis'
     ],
-    password: '',
+    password: 'admin!',
     passwordRules: [
       v => !!v || 'Renseignez votre mot de passe'
     ],
@@ -106,7 +107,8 @@ export default {
 
   computed: {
     ...mapState({
-      isAuthenticated: state => state.auth.isAuthenticated
+      isAuthenticated: state => state.auth.isAuthenticated,
+      isLoading: state => state.auth.isLoading
     })
   },
 

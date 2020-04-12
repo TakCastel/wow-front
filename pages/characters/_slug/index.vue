@@ -48,7 +48,7 @@ export default {
   name: 'CharacterPage',
 
   meta: {
-    title: 'Trames',
+    title: 'Personnage',
     breadcrumb: [
       { title: 'Accueil', url: '/' },
       { title: 'Personnages', url: '/characters' },

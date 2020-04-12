@@ -2,7 +2,7 @@
   <v-navigation-drawer
     v-model="isDrawerOpen"
     :bottom="$vuetify.breakpoint.xsOnly"
-    color="#333333"
+    color="#202020"
     clipped
     fixed
     app
@@ -17,7 +17,9 @@
         exact
       >
         <v-list-item-action>
-          <v-icon>{{ mainPage.icon }}</v-icon>
+          <v-icon color="grey">
+            {{ mainPage.icon }}
+          </v-icon>
         </v-list-item-action>
         <v-list-item-content>
           <v-list-item-title>
@@ -34,10 +36,12 @@
           v-if="subPage.items"
           v-model="subPage.active"
           :key="subPage.title"
-          :prepend-icon="subPage.icon"
           no-action
         >
           <template v-slot:activator>
+            <v-icon slot="prependIcon" large color="primary">
+              {{ subPage.icon }}
+            </v-icon>
             <v-list-item-content>
               <v-list-item-title v-text="subPage.title" />
             </v-list-item-content>
@@ -57,7 +61,9 @@
         <!-- If has no items -->
         <v-list-item v-else :key="subPage.title" :to="subPage.to">
           <v-list-item-action>
-            <v-icon>{{ subPage.icon }}</v-icon>
+            <v-icon color="grey">
+              {{ subPage.icon }}
+            </v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>
@@ -74,6 +80,8 @@
 import drawerItems from './NavigationDrawerItems'
 
 export default {
+  name: 'NavigationDrawer',
+
   computed: {
     mainNavigation () {
       return drawerItems.mainNavigation

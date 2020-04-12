@@ -1,5 +1,12 @@
 <template>
   <div id="dashbord">
+    <v-alert
+      border="left"
+      color="info"
+      dark
+    >
+      Bienvenue sur la version alpha du site web. Des erreurs peuvent survenir. Nous ne garantissons pas la stabilité du site internet. Il n'existe malheureusement aucun moyen de remonter les bugs pour l'instant. Si vous souhaitez faire des retours, merci d'attendre les prochaines versions du site.
+    </v-alert>
     <div id="dashbord-main" class="mb-5">
       <!-- <v-row>
         <v-col cols="12" sm="12" md="6" lg="4">

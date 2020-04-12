@@ -1,5 +1,5 @@
 <template>
-  <v-card id="breadcrumb" class="mb-5" flat color="#272727">
+  <v-card id="breadcrumb" class="mb-5" flat color="#202020">
     <v-card-text>
       <span
         v-for="path in generatedBreadcrumb"
@@ -16,6 +16,8 @@
 
 <script>
 export default {
+  name: 'Breadcrumb',
+
   computed: {
     generatedBreadcrumb () {
       return this.$store.state.pageBreadcrumb

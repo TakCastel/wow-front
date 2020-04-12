@@ -80,7 +80,7 @@ module.exports = {
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
-          success: '#7a9e4a'
+          success: '#26b137'
         }
       }
     }
@@ -95,8 +95,8 @@ module.exports = {
     extend (config, { isDev, isClient, isServer }) {
       if (isServer) {
         config.externals = {
-          '@firebase/app': 'commonjs @firebase/app',
-          '@firebase/firestore': 'commonjs @firebase/firestore'
+          // '@firebase/app': 'commonjs @firebase/app',
+          // '@firebase/firestore': 'commonjs @firebase/firestore'
         // etc...
         }
       }

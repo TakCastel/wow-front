@@ -32,6 +32,8 @@
 import { mapActions } from 'vuex'
 
 export default {
+  name: 'SideMenu',
+
   data: () => ({
     items: [
       { title: 'Paramètres', icon: 'mdi-cog', action: 'settings' },

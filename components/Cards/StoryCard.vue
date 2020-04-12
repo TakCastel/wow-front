@@ -19,7 +19,7 @@
           </div>
           <div>
             <v-btn @click="handleClick" outlined>
-              Voir
+              Lire
             </v-btn>
           </div>
         </div>

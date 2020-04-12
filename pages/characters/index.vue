@@ -13,10 +13,12 @@
                            'items-per-page-text': 'Afficher :',
                            'items-per-page-all-text': 'Tous'}"
           :loading="isLoading"
+          @click:row="handleClick"
+          class="#202020"
           loading-text="Chargement en cours..."
         >
           <template v-slot:item.avatar="{ item }">
-            <v-avatar @click="handleClick(item.slug)" size="36" class="cursor-pointer">
+            <v-avatar size="36">
               <img
                 :src="item.avatar.url"
                 :alt="item.name"
@@ -24,48 +26,17 @@
             </v-avatar>
           </template>
           <template v-slot:item.actions="{ item }">
-            <v-tooltip left color="grey darken-4">
-              <template v-slot:activator="{ on }">
-                <v-btn @click="handleClick(item.slug)" v-on="on" icon small>
-                  <v-icon small>
-                    mdi-clipboard-text
-                  </v-icon>
-                </v-btn>
-              </template>
-              <span>Lire la fiche</span>
-            </v-tooltip>
+            <goToWithSlug :item="item" />
           </template>
         </v-data-table>
-        <!-- <v-list>
-          <v-list-item
-            v-for="character in characters"
-            :key="character.id"
-            @click="handleClick(character.slug)"
-            two-line
-          >
-            <v-list-item-avatar>
-              <v-img :src="character.avatar.url" />
-            </v-list-item-avatar>
-
-            <v-list-item-content>
-              <v-list-item-title v-text="character.name" />
-              <v-list-item-subtitle v-text="character.role" />
-            </v-list-item-content>
-            <v-list-item-action>
-              <v-btn @click.stop="handleThing" icon>
-                <v-icon color="grey lighten-1">
-                  mdi-information
-                </v-icon>
-              </v-btn>
-            </v-list-item-action>
-          </v-list-item>
-        </v-list> -->
       </v-card>
     </v-col>
   </v-row>
 </template>
 
 <script>
+import goToWithSlug from '@/components/TableActions/goToWithSlug'
+
 export default {
   meta: {
     title: 'Personnages',
@@ -73,6 +44,10 @@ export default {
       { title: 'Accueil', url: '/' },
       { title: 'Personnages', active: true }
     ]
+  },
+
+  components: {
+    goToWithSlug
   },
 
   data: () => ({
@@ -85,7 +60,6 @@ export default {
       },
       { text: 'Nom', value: 'name' },
       { text: 'Classe', value: 'role' },
-      // { text: 'Groupe', value: 'rank' },
       { text: 'Actions', value: 'actions', sortable: false }
     ]
   }),
@@ -105,19 +79,15 @@ export default {
   },
 
   methods: {
-    handleClick (url) {
-      this.$router.push({ path: `/characters/${url}` })
-    },
-
-    handleThing () {
-      console.log('do something')
+    handleClick (value) {
+      this.$router.push({ path: `/characters/${value.slug}` })
     }
   }
 }
 </script>
 
 <style lang="scss">
-.cursor-pointer {
-  cursor: pointer
+tbody tr {
+  cursor: pointer;
 }
 </style>
