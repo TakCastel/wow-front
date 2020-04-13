@@ -4,6 +4,13 @@
       <v-card>
         <v-toolbar color="primary">
           <v-toolbar-title>Liste des personnages</v-toolbar-title>
+          <v-spacer />
+          <v-btn outlined>
+            <v-icon left>
+              mdi-account-plus
+            </v-icon>
+            Nouveau
+          </v-btn>
         </v-toolbar>
         <v-data-table
           :headers="headers"

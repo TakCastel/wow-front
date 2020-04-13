@@ -37,8 +37,8 @@ export default {
   data: () => ({
     items: [
       { title: 'Paramètres', icon: 'mdi-cog', action: 'settings' },
-      { title: 'Profil', icon: 'mdi-account', action: 'profile' },
-      { title: 'Portail', icon: 'mdi-view-dashboard', action: 'portal' },
+      { title: 'Compte', icon: 'mdi-shield-account', action: 'profile' },
+      { title: 'Retour au portail', icon: 'mdi-view-column', action: 'portal' },
       { title: 'Déconnexion', icon: 'mdi-logout-variant', action: 'logout' }
     ]
   }),

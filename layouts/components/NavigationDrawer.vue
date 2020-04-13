@@ -38,10 +38,10 @@
           :key="subPage.title"
           no-action
         >
+          <v-icon slot="prependIcon" color="grey">
+            {{ subPage.icon }}
+          </v-icon>
           <template v-slot:activator>
-            <v-icon slot="prependIcon" large color="primary">
-              {{ subPage.icon }}
-            </v-icon>
             <v-list-item-content>
               <v-list-item-title v-text="subPage.title" />
             </v-list-item-content>

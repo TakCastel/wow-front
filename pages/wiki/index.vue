@@ -1,5 +1,20 @@
 <template>
   <v-row>
+    <v-col class="d-flex justify-space-between" cols="12">
+      <v-btn color="primary" large>
+        <v-icon left>
+          mdi-plus-circle-outline
+        </v-icon>
+        Nouveau
+      </v-btn>
+
+      <v-btn outlined color="secondary" large>
+        <v-icon left>
+          mdi-script-text-outline
+        </v-icon>
+        Écrire un Rapport
+      </v-btn>
+    </v-col>
     <v-col v-if="activeEvents && activeEvents.length < 1" xs="12" sm="6" md="4">
       <v-card>
         <v-card-text>Aucun article disponible</v-card-text>

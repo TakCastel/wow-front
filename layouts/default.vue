@@ -44,7 +44,7 @@
       </template> -->
     </v-app-bar>
     <v-content class="#171717">
-      <v-container fill-height>
+      <v-container>
         <v-layout column>
           <Breadcrumb />
           <nuxt />

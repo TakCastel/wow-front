@@ -17,10 +17,21 @@
               {{ content.active ? 'En cours' : 'Terminée' }}
             </div>
           </div>
-          <div>
+          <div class="d-flex justify-space-between align-center">
             <v-btn @click="handleClick" outlined>
               Lire
             </v-btn>
+            <v-tooltip color="grey darken-4" left>
+              <template v-slot:activator="{ on }">
+                <div v-on="on">
+                  <v-icon>
+                    mdi-script-text
+                  </v-icon>
+                  0
+                </div>
+              </template>
+              <span>Rapports de mission</span>
+            </v-tooltip>
           </div>
         </div>
       </v-img>
