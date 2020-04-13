@@ -1,6 +1,6 @@
 export const state = () => ({
   loadingEventArticles: false,
-  articlesByCategories: [],
+  listOfArticles: [],
   loadingCurrentArticle: false,
   currentArticle: {}
 })
@@ -13,9 +13,10 @@ export const actions = {
   requestAllArticles ({ commit }) {
     commit('SET_EVENT_ARTICLES_LOADING', true)
     this.$axios
-      .get('/categories', {
+      .get('/articles', {
         params: {
-          _sort: 'created_At:desc'
+          _sort: 'created_At:desc',
+          'game.title': 'teso'
         }
       })
       .then((response) => {
@@ -38,7 +39,8 @@ export const actions = {
     this.$axios
       .get('/articles', {
         params: {
-          slug
+          slug,
+          'game.title': 'teso'
         }
       })
       .then((response) => {
@@ -53,7 +55,7 @@ export const actions = {
 
 export const mutations = {
   SET_ARTICLES (state, response) {
-    state.articlesByCategories = response
+    state.listOfArticles = response
   },
 
   SET_CURRENT_ARTICLE (state, response) {

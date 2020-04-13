@@ -15,12 +15,15 @@
         Écrire un Rapport
       </v-btn>
     </v-col>
-    <v-col v-if="activeEvents && activeEvents.length < 1" xs="12" sm="6" md="4">
+
+    <v-col v-if="events.length < 1" xs="12" sm="6" md="4">
       <v-card>
-        <v-card-text>Aucun article disponible</v-card-text>
+        <v-card-text>
+          Aucun article n'est disponible.
+        </v-card-text>
       </v-card>
     </v-col>
-    <story-card v-else v-for="(event, index) in activeEvents" :key="index" :content="event" />
+    <story-card v-else v-for="(event, index) in events" :key="index" :content="event" />
   </v-row>
 </template>
 
@@ -36,23 +39,25 @@ export default {
     ]
   },
 
+  name: 'Wiki',
+
   components: {
     StoryCard
   },
 
   computed: {
     events () {
-      const events = { ...this.$store.state.articles.articlesByCategories.filter(
-        category => category.name === 'events'
-      )[0] }
-      return events.articles
-    },
-
-    activeEvents () {
-      return this.events
-        ? this.events.slice().filter(article => article.active === true)
+      const events = this.$store.state.articles.listOfArticles
+      return events
+        ? events.slice().filter(article => article.active === true)
         : null
     },
+
+    // activeEvents () {
+    //   return this.events
+    //     ? this.events.slice().filter(article => article.active === true)
+    //     : null
+    // },
 
     isLoading () {
       return this.$store.state.articles.loadingEventArticles

@@ -15,7 +15,8 @@ export const actions = {
     this.$axios
       .get('/characters', {
         params: {
-          _sort: 'created_At:desc'
+          _sort: 'created_At:desc',
+          'game.title': 'teso'
         }
       })
       .then((response) => {
@@ -38,7 +39,8 @@ export const actions = {
     this.$axios
       .get('/characters', {
         params: {
-          slug
+          slug,
+          'game.title': 'teso'
         }
       })
       .then((response) => {
