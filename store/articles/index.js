@@ -16,7 +16,7 @@ export const actions = {
       .get('/articles', {
         params: {
           _sort: 'created_At:desc',
-          'game.title': 'teso'
+          'game.title': 'wow'
         }
       })
       .then((response) => {
@@ -40,7 +40,7 @@ export const actions = {
       .get('/articles', {
         params: {
           slug,
-          'game.title': 'teso'
+          'game.title': 'wow'
         }
       })
       .then((response) => {

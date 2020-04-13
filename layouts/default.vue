@@ -2,7 +2,7 @@
   <v-app dark>
     <NavigationDrawer />
     <v-app-bar
-      :src="require('../assets/images/wallpapers/ESO_Morrowind_keyart.jpg')"
+      :src="require('../assets/images/wallpapers/WOW_battle.jpg')"
       color="#563028"
       fade-img-on-scroll
       shrink-on-scroll
@@ -14,7 +14,7 @@
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
-          gradient="to top right, rgba(86, 48, 40, 0.8), rgba(128, 208, 199, .2)"
+          gradient="to top right, rgb(206, 132, 62, .8), rgb(10, 82, 156, .2)"
         />
       </template>
       <v-app-bar-nav-icon @click.stop="handleDrawer" />
@@ -74,7 +74,7 @@ export default {
   },
 
   data: () => ({
-    appTitle: 'The Elder Scrolls'
+    appTitle: 'World of Warcraft'
   }),
 
   computed: {
