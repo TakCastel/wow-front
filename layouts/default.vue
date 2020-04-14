@@ -43,7 +43,7 @@
         </v-tabs>
       </template> -->
     </v-app-bar>
-    <v-content class="#171717">
+    <v-content>
       <v-container>
         <v-layout column>
           <Breadcrumb />
