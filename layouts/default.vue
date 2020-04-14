@@ -2,7 +2,7 @@
   <v-app dark>
     <NavigationDrawer />
     <v-app-bar
-      :src="theme.cover ? theme.cover.url : undefined"
+      :src="theme ? theme.cover.url : undefined"
       color="#563028"
       fade-img-on-scroll
       shrink-on-scroll
@@ -75,7 +75,7 @@ export default {
 
   data: () => ({
     appTitle: 'The Elder Scrolls',
-    theme: null
+    theme: ''
   }),
 
   computed: {
