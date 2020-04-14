@@ -2,7 +2,7 @@
   <v-app dark>
     <NavigationDrawer />
     <v-app-bar
-      :src="require('../assets/images/wallpapers/ESO_Morrowind_keyart.jpg')"
+      :src="theme.cover ? theme.cover.url : undefined"
       color="#563028"
       fade-img-on-scroll
       shrink-on-scroll
@@ -74,7 +74,8 @@ export default {
   },
 
   data: () => ({
-    appTitle: 'The Elder Scrolls'
+    appTitle: 'The Elder Scrolls',
+    theme: null
   }),
 
   computed: {
@@ -82,6 +83,19 @@ export default {
       isAuthenticated: state => state.auth.isAuthenticated,
       user: state => state.auth.session.user
     })
+  },
+
+  beforeCreate () {
+    this.$axios
+      .get('/themes', {
+        params: {
+          'game.title': 'teso'
+        }
+      })
+      .then((response) => {
+        console.log(response)
+        this.theme = response.data[0]
+      })
   },
 
   methods: {
