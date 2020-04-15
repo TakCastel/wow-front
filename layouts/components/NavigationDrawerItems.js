@@ -31,7 +31,7 @@ export default {
     //   to: '/timeline'
     // },
     {
-      icon: 'mdi-contacts',
+      icon: 'mdi-account-box-multiple',
       title: 'Personnages',
       to: '/characters'
     }
