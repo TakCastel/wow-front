@@ -16,7 +16,7 @@ export const actions = {
       .get('/characters', {
         params: {
           _sort: 'created_At:desc',
-          'game.title': 'teso'
+          'game.title': this.$game
         }
       })
       .then((response) => {
@@ -40,7 +40,7 @@ export const actions = {
       .get('/characters', {
         params: {
           slug,
-          'game.title': 'teso'
+          'game.title': this.$game
         }
       })
       .then((response) => {

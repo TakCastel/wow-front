@@ -3,7 +3,7 @@
     <NavigationDrawer />
     <v-app-bar
       :src="theme ? theme.cover.url : undefined"
-      color="#563028"
+      color="primary darken-1"
       fade-img-on-scroll
       shrink-on-scroll
       clipped-left
@@ -14,13 +14,13 @@
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
-          gradient="to top right, rgba(86, 48, 40, 0.8), rgba(128, 208, 199, .2)"
+          gradient="to top, rgba(31, 31, 31, .8) 25%, rgba(48, 48, 48, .2)"
         />
       </template>
       <v-app-bar-nav-icon @click.stop="handleDrawer" />
       <v-toolbar-title class="pl-3">
         <h1 class="title">
-          {{ appTitle }}
+          {{ appTitle ? appTitle : '...' }}
           <span class="subtitle-1 hidden-sm-and-down">
             - {{ $store.state.pageTitle }}
           </span>
@@ -74,7 +74,6 @@ export default {
   },
 
   data: () => ({
-    appTitle: 'The Elder Scrolls',
     theme: ''
   }),
 
@@ -82,18 +81,26 @@ export default {
     ...mapState({
       isAuthenticated: state => state.auth.isAuthenticated,
       user: state => state.auth.session.user
-    })
+    }),
+
+    appTitle () {
+      return this.theme.title
+    },
+
+    // tmp fix befaore putting this in plugin
+    domainTarget () {
+      return this.$game
+    }
   },
 
   beforeCreate () {
     this.$axios
       .get('/themes', {
         params: {
-          'game.title': 'teso'
+          'game.title': this.$game
         }
       })
       .then((response) => {
-        console.log(response)
         this.theme = response.data[0]
       })
   },
