@@ -1,19 +1,25 @@
 <template>
   <v-row>
     <v-col class="d-flex justify-space-between" cols="12">
-      <v-btn color="primary" large>
-        <v-icon left>
-          mdi-plus-circle-outline
-        </v-icon>
-        Nouveau
-      </v-btn>
-
-      <v-btn outlined color="secondary" large>
-        <v-icon left>
-          mdi-script-text-outline
-        </v-icon>
-        Écrire un Rapport
-      </v-btn>
+      <AuthenticatedActionButton
+        @action="handleCreateEvent"
+        :variant="{
+          color: 'primary',
+          large: true
+        }"
+        text="Nouveau"
+        icon="mdi-plus-circle-outline"
+      />
+      <AuthenticatedActionButton
+        @action="handleCreateReport"
+        :variant="{
+          color: 'secondary',
+          large: true,
+          outlined: true
+        }"
+        text="Écrire un Rapport"
+        icon="mdi-script-text-outline"
+      />
     </v-col>
 
     <v-col v-if="events.length < 1" xs="12" sm="6" md="4">
@@ -28,6 +34,7 @@
 </template>
 
 <script>
+import AuthenticatedActionButton from '@/components/AuthenticatedActionButton'
 import StoryCard from '@/components/Cards/StoryCard'
 
 export default {
@@ -42,6 +49,7 @@ export default {
   name: 'Wiki',
 
   components: {
+    AuthenticatedActionButton,
     StoryCard
   },
 
@@ -66,6 +74,16 @@ export default {
 
   mounted () {
     this.$store.dispatch('articles/requestAllArticles')
+  },
+
+  methods: {
+    handleCreateEvent () {
+      this.$router.push({ path: 'content/add', query: { category: 'events' } })
+    },
+
+    handleCreateReport () {
+      alert(`Cette action n'est pas supportée par la version alpha`)
+    }
   }
 }
 </script>

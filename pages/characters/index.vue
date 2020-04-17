@@ -5,12 +5,14 @@
         <v-toolbar color="primary">
           <v-toolbar-title>Liste des personnages</v-toolbar-title>
           <v-spacer />
-          <v-btn outlined>
-            <v-icon left>
-              mdi-account-plus
-            </v-icon>
-            Nouveau
-          </v-btn>
+          <AuthenticatedActionButton
+            @action="handleCreate"
+            :variant="{
+              outlined: true
+            }"
+            text="Nouveau"
+            icon="mdi-account-plus"
+          />
         </v-toolbar>
         <v-data-table
           :headers="headers"
@@ -20,7 +22,7 @@
                            'items-per-page-text': 'Afficher :',
                            'items-per-page-all-text': 'Tous'}"
           :loading="isLoading"
-          @click:row="handleClick"
+          @click:row="handleView"
           class="#202020"
           loading-text="Chargement en cours..."
         >
@@ -43,6 +45,7 @@
 
 <script>
 import goToWithSlug from '@/components/TableActions/goToWithSlug'
+import AuthenticatedActionButton from '@/components/AuthenticatedActionButton'
 
 export default {
   meta: {
@@ -54,6 +57,7 @@ export default {
   },
 
   components: {
+    AuthenticatedActionButton,
     goToWithSlug
   },
 
@@ -86,8 +90,12 @@ export default {
   },
 
   methods: {
-    handleClick (value) {
+    handleView (value) {
       this.$router.push({ path: `/characters/${value.slug}` })
+    },
+
+    handleCreate () {
+      alert(`Cette action n'est pas supportée par la version alpha`)
     }
   }
 }

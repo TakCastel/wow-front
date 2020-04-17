@@ -1,4 +1,8 @@
+import pkg from '@/package.json'
+
 export const state = () => ({
+  loadingPublishArticle: false,
+  idOfNewArticleCategory: '',
   loadingEventArticles: false,
   listOfArticles: [],
   loadingCurrentArticle: false,
@@ -16,7 +20,7 @@ export const actions = {
       .get('/articles', {
         params: {
           _sort: 'created_At:desc',
-          'game.title': this.$game
+          'game.title': pkg.targetDomain
         }
       })
       .then((response) => {
@@ -40,7 +44,7 @@ export const actions = {
       .get('/articles', {
         params: {
           slug,
-          'game.title': this.$game
+          'game.title': pkg.targetDomain
         }
       })
       .then((response) => {
@@ -50,6 +54,44 @@ export const actions = {
       .catch((error) => {
         console.error('An error occurred:', error)
       })
+  },
+
+  /**
+   *
+   * @param {payload.title} payload title of the article
+   * @param {payload.body} payload body of the article
+   * @param {payload.category} payload type of te article
+   */
+  async addNewArticle ({ commit, state }, payload) {
+    commit('SET_PUBLICATION_LOADING', true)
+    try {
+      await console.log('meh')
+      // const category = await this.$axios.get('/categories', {
+      //   params: {
+      //     name: payload.category
+      //   }
+      // })
+
+      // const game = await this.$axios.get('/games', {
+      //   params: {
+      //     title: pkg.targetDomain
+      //   }
+      // })
+
+      // this.$axios.post('/articles', {
+      //   active: true,
+      //   title: payload.title,
+      //   body: payload.body,
+      //   infobox: payload.infobox,
+      //   thumbnail: payload.thumbnail,
+      //   category: category.data[0].id,
+      //   game: game.data[0].id
+      // })
+    } catch (err) {
+      console.error(err)
+    } finally {
+      commit('SET_PUBLICATION_LOADING', false)
+    }
   }
 }
 
@@ -60,6 +102,10 @@ export const mutations = {
 
   SET_CURRENT_ARTICLE (state, response) {
     state.currentArticle = { ...response[0] }
+  },
+
+  SET_PUBLICATION_LOADING (state, status) {
+    state.loadingPublishArticle = status
   },
 
   SET_CURRENT_ARTICLE_LOADING (state, status) {

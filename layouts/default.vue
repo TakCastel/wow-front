@@ -62,6 +62,7 @@ import Breadcrumb from './components/Breadcrumb'
 import SideMenu from './components/SideMenu'
 import Notifications from './components/Notifications'
 import NavigationDrawer from './components/NavigationDrawer'
+import pkg from '@/package.json'
 
 export default {
   name: 'MainLayout',
@@ -85,11 +86,6 @@ export default {
 
     appTitle () {
       return this.theme.title
-    },
-
-    // tmp fix befaore putting this in plugin
-    domainTarget () {
-      return this.$game
     }
   },
 
@@ -97,7 +93,7 @@ export default {
     this.$axios
       .get('/themes', {
         params: {
-          'game.title': this.$game
+          'game.title': pkg.targetDomain
         }
       })
       .then((response) => {

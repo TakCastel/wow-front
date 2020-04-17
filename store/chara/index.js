@@ -1,3 +1,5 @@
+import pkg from '@/package.json'
+
 export const state = () => ({
   loadingAllCharacters: false,
   listOfCharacters: [],
@@ -16,7 +18,7 @@ export const actions = {
       .get('/characters', {
         params: {
           _sort: 'created_At:desc',
-          'game.title': this.$game
+          'game.title': pkg.targetDomain
         }
       })
       .then((response) => {
@@ -40,7 +42,7 @@ export const actions = {
       .get('/characters', {
         params: {
           slug,
-          'game.title': this.$game
+          'game.title': pkg.targetDomain
         }
       })
       .then((response) => {
