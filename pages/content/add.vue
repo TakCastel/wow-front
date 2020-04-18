@@ -43,7 +43,7 @@
               v-model="body"
               :rules="bodyRules"
               label="Racontez votre histoire..."
-              rows="10"
+              rows="14"
               required
               filled
               rounded
@@ -75,7 +75,6 @@
         </v-row>
 
         <v-row class="px-3">
-          <v-spacer />
           <v-btn
             :loading="isLoading"
             :disabled="!valid || isLoading"
