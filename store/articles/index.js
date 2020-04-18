@@ -1,18 +1,16 @@
 import pkg from '@/package.json'
 
 export const state = () => ({
-  loadingPublishArticle: false,
-  idOfNewArticleCategory: '',
-  loadingEventArticles: false,
-  listOfArticles: [],
-  loadingCurrentArticle: false,
-  currentArticle: {}
+  loadingPublishArticle: false, // Used for loading state on publish button
+  loadingEventArticles: false, // Used to display a loader before showing articles
+  loadingCurrentArticle: false, // Used to display a loading state inside an article
+  listOfArticles: [], // Display all articles within all categories
+  currentArticle: {} // Display the current article of the page
 })
 
 export const actions = {
 /**
- * Request all event listed
- * @param {*} param0
+ * Request all articles
  */
   requestAllArticles ({ commit }) {
     commit('SET_EVENT_ARTICLES_LOADING', true)
@@ -34,7 +32,6 @@ export const actions = {
 
   /**
    * Request the current reading article
-   * @param {*} param0
    * @param {*} slug
    */
   requestArticleBySlug ({ commit }, slug) {
@@ -61,32 +58,30 @@ export const actions = {
    * @param {payload.title} payload title of the article
    * @param {payload.body} payload body of the article
    * @param {payload.category} payload type of te article
+   * @param {payload.thumbnail} payload thumbnail of te article
    */
   async addNewArticle ({ commit, state }, payload) {
     commit('SET_PUBLICATION_LOADING', true)
     try {
-      await console.log('meh')
-      // const category = await this.$axios.get('/categories', {
-      //   params: {
-      //     name: payload.category
-      //   }
-      // })
+      const formData = new FormData()
+      // Get the category Id to post in the correct category
+      const category = await this.$axios.get('/categories', { params: { name: payload.category } })
+      // Get the game Id to post in the correct game
+      const game = await this.$axios.get('/games', { params: { title: pkg.targetDomain } })
 
-      // const game = await this.$axios.get('/games', {
-      //   params: {
-      //     title: pkg.targetDomain
-      //   }
-      // })
+      // Create the new article to push
+      const article = {
+        ...payload.data,
+        category: category.data[0].id,
+        game: game.data[0].id
+      }
 
-      // this.$axios.post('/articles', {
-      //   active: true,
-      //   title: payload.title,
-      //   body: payload.body,
-      //   infobox: payload.infobox,
-      //   thumbnail: payload.thumbnail,
-      //   category: category.data[0].id,
-      //   game: game.data[0].id
-      // })
+      formData.append('data', JSON.stringify(article))
+      formData.append('files.thumbnail', payload.file)
+
+      // Axios /POST article method
+      this.$axios.post('/articles', formData)
+      // console.log(response.data)
     } catch (err) {
       console.error(err)
     } finally {

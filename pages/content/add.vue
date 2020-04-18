@@ -1,51 +1,59 @@
 <template>
   <v-card>
-    <v-toolbar color="primary">
-      <v-toolbar-title>Publication</v-toolbar-title>
-    </v-toolbar>
-    <v-card-text class="grey darken-4">
-      <v-form
-        ref="form"
-        v-model="valid"
-        lazy-validation
-      >
-        <v-container>
-          <v-row>
-            <v-col cols="8">
-              <v-text-field
-                v-model="title"
-                :counter="120"
-                :rules="titleRules"
-                label="Titre de l'évènement"
-                required
-                outlined
-              />
-
-              <v-textarea
-                v-model="body"
-                :rules="bodyRules"
-                label="Racontez votre histoire..."
-                rows="12"
-                required
-                outlined
-              />
-            </v-col>
-            <v-col>
-              <v-file-input
-                v-model="file"
-                prepend-icon="mdi-image-outline"
-                label="Illustration de couverture"
-                outlined
-              />
-              <v-textarea
-                v-model="infobox"
-                prepend-icon="mdi-card-text"
-                label="Légende"
-                outlined
-              />
-            </v-col>
-          </v-row>
-        </v-container>
+    <v-form
+      ref="form"
+      v-model="valid"
+      lazy-validation
+    >
+      <v-toolbar color="primary">
+        <v-text-field
+          v-model="title"
+          :rules="titleRules"
+          color="white"
+          label="Titre de l'évènement"
+          single-line
+          hide-details
+          dense
+          filled
+          rounded
+        />
+      </v-toolbar>
+      <v-card-text class="grey darken-4">
+        <v-row>
+          <v-col cols="8">
+            <v-textarea
+              v-model="body"
+              :rules="bodyRules"
+              label="Racontez votre histoire..."
+              rows="17"
+              no-resize
+              required
+              filled
+              rounded
+            />
+          </v-col>
+          <v-col cols="4">
+            <v-file-input
+              v-model="files"
+              @change="handleFilePicked"
+              prepend-icon="mdi-image-outline"
+              label="Illustration de couverture"
+              accept="image/*"
+              hide-details
+              filled
+              rounded
+            />
+            <v-img :src="imageUrl" alt="Prévisualisation de l'image" class="my-3" max-height="200" contain />
+            <v-textarea
+              v-model="infobox"
+              prepend-icon="mdi-card-text"
+              label="Légende"
+              no-resize
+              filled
+              rounded
+            />
+          </v-col>
+        </v-row>
 
         <v-btn
           :loading="isLoading"
@@ -53,12 +61,11 @@
           @click="handleSubmit"
           color="primary"
           large
-          class="mt-3"
         >
           Envoyer
         </v-btn>
-      </v-form>
-    </v-card-text>
+      </v-card-text>
+    </v-form>
   </v-card>
 </template>
 
@@ -87,7 +94,8 @@ export default {
       v => !!v || 'Votre article est vide'
     ],
     infobox: '',
-    file: null
+    files: null,
+    imageUrl: ''
   }),
 
   computed: {
@@ -99,15 +107,26 @@ export default {
   methods: {
     handleSubmit () {
       if (this.$refs.form.validate()) {
-        const payload = {
+        const data = {
           title: this.title,
           body: this.body,
           category: this.$route.query.category,
-          infobox: this.infobox,
-          thumbnail: this.file
+          infobox: this.infobox
         }
 
-        this.$store.dispatch('articles/addNewArticle', payload)
+        this.$store.dispatch('articles/addNewArticle', { data, file: this.files })
+      }
+    },
+
+    handleFilePicked () {
+      if (this.files) {
+        const fileReader = new FileReader()
+        fileReader.addEventListener('load', () => {
+          this.imageUrl = fileReader.result
+        })
+        fileReader.readAsDataURL(this.files)
+      } else {
+        this.imageUrl = ''
       }
     }
   }
