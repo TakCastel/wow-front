@@ -110,11 +110,14 @@ export default {
         const data = {
           title: this.title,
           body: this.body,
-          category: this.$route.query.category,
           infobox: this.infobox
         }
 
-        this.$store.dispatch('articles/addNewArticle', { data, file: this.files })
+        this.$store.dispatch('articles/addNewArticle', {
+          category: this.$route.query.category,
+          file: this.files,
+          data
+        }).then(() => this.$router.push({ name: 'wiki' }))
       }
     },
 

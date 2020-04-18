@@ -60,10 +60,9 @@ export const actions = {
    * @param {payload.category} payload type of te article
    * @param {payload.thumbnail} payload thumbnail of te article
    */
-  async addNewArticle ({ commit, state }, payload) {
+  async addNewArticle ({ commit, dispatch }, payload) {
     commit('SET_PUBLICATION_LOADING', true)
     try {
-      const formData = new FormData()
       // Get the category Id to post in the correct category
       const category = await this.$axios.get('/categories', { params: { name: payload.category } })
       // Get the game Id to post in the correct game
@@ -73,15 +72,22 @@ export const actions = {
       const article = {
         ...payload.data,
         category: category.data[0].id,
-        game: game.data[0].id
+        game: game.data[0].id,
+        active: true
       }
 
+      const formData = new FormData()
       formData.append('data', JSON.stringify(article))
       formData.append('files.thumbnail', payload.file)
 
       // Axios /POST article method
       this.$axios.post('/articles', formData)
-      // console.log(response.data)
+
+      dispatch(
+        'notifs/newEventOccurs',
+        'Votre article a été publié avec succès.',
+        { root: true }
+      )
     } catch (err) {
       console.error(err)
     } finally {

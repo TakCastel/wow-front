@@ -50,9 +50,11 @@ export const actions = {
         response,
         routeName: '/'
       })
-      dispatch('notifs/newEventOccurs',
+      dispatch(
+        'notifs/newEventOccurs',
         `Bonjour ${payload.identifier} ! Vous vous êtes connecté avec succès au site.`,
-        { root: true })
+        { root: true }
+      )
     } catch (err) {
       console.error('An error occurred:', err)
     } finally {
