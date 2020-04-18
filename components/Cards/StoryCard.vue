@@ -1,10 +1,10 @@
 <template>
   <v-col xs="12" sm="6" md="4">
-    <v-card>
+    <v-card class="rounded-5">
       <v-img
         :src="caption"
         :lazy-src="caption"
-        gradient="to top, rgba(31, 31, 31, .8) 10%, rgba(48, 48, 48, .8)"
+        gradient="to top right, rgba(31, 31, 31, .8) 25%, rgba(48, 48, 48, .2)"
         aspect-ratio="1.6"
         class="grey lighten-2"
       >
@@ -18,7 +18,7 @@
             </div>
           </div>
           <div class="d-flex justify-space-between align-center">
-            <v-btn @click="handleClick" outlined>
+            <v-btn @click="handleClick" outlined rounded>
               Lire
             </v-btn>
             <v-tooltip color="grey darken-4" left>
@@ -68,3 +68,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.rounded-card{
+    border-radius: 48px;
+}
+</style>

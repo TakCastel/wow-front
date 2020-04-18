@@ -5,6 +5,7 @@
         @action="handleCreateEvent"
         :variant="{
           color: 'primary',
+          rounded: true,
           large: true
         }"
         text="Nouveau"
@@ -15,6 +16,7 @@
         :variant="{
           color: 'secondary',
           large: true,
+          rounded: true,
           outlined: true
         }"
         text="Écrire un Rapport"

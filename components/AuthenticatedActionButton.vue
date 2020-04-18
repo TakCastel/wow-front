@@ -1,21 +1,22 @@
 <template>
-  <v-tooltip :disabled="isAuthenticated" top color="grey darken-3" max-width="250">
+  <!-- <v-tooltip :disabled="isAuthenticated" top color="grey darken-3" max-width="250">
     <template v-slot:activator="{ on }">
-      <div v-on="on">
-        <v-btn
-          :disabled="!isAuthenticated"
-          @click="handleClick"
-          v-bind="{...variant}"
-        >
-          <v-icon left>
-            {{ icon }}
-          </v-icon>
-          {{ text }}
-        </v-btn>
-      </div>
-    </template>
+      <div v-on="on"> -->
+  <v-btn
+    v-if="isAuthenticated"
+    :disabled="!isAuthenticated"
+    @click="handleClick"
+    v-bind="{...variant}"
+  >
+    <v-icon left>
+      {{ icon }}
+    </v-icon>
+    {{ text }}
+  </v-btn>
+  </div>
+  <!-- </template>
     <span>Vous devez vous connecter pour réaliser cette action</span>
-  </v-tooltip>
+  </v-tooltip> -->
 </template>
 
 <script>

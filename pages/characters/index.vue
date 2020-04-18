@@ -23,7 +23,7 @@
                            'items-per-page-all-text': 'Tous'}"
           :loading="isLoading"
           @click:row="handleView"
-          class="#202020"
+          class="grey darken-4"
           loading-text="Chargement en cours..."
         >
           <template v-slot:item.avatar="{ item }">

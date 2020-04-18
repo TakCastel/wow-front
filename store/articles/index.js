@@ -81,7 +81,7 @@ export const actions = {
       formData.append('files.thumbnail', payload.file)
 
       // Axios /POST article method
-      this.$axios.post('/articles', formData)
+      await this.$axios.post('/articles', formData)
 
       dispatch(
         'notifs/newEventOccurs',
