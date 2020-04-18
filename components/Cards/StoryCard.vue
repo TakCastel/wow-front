@@ -4,7 +4,7 @@
       <v-img
         :src="caption"
         :lazy-src="caption"
-        gradient="to top right, rgba(86, 48, 40, 0.8), rgba(128, 208, 199, .2)"
+        gradient="to top, rgba(31, 31, 31, .8) 10%, rgba(48, 48, 48, .8)"
         aspect-ratio="1.6"
         class="grey lighten-2"
       >
