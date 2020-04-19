@@ -5,12 +5,14 @@
         <v-toolbar color="primary">
           <v-toolbar-title>Liste des personnages</v-toolbar-title>
           <v-spacer />
-          <v-btn outlined>
-            <v-icon left>
-              mdi-account-plus
-            </v-icon>
-            Nouveau
-          </v-btn>
+          <AuthenticatedActionButton
+            @action="handleCreate"
+            :variant="{
+              outlined: true
+            }"
+            text="Nouveau"
+            icon="mdi-account-plus"
+          />
         </v-toolbar>
         <v-data-table
           :headers="headers"
@@ -20,20 +22,19 @@
                            'items-per-page-text': 'Afficher :',
                            'items-per-page-all-text': 'Tous'}"
           :loading="isLoading"
-          @click:row="handleClick"
-          class="#202020"
+          @click:row="handleView"
           loading-text="Chargement en cours..."
         >
           <template v-slot:item.avatar="{ item }">
             <v-avatar size="36">
               <img
-                :src="item.avatar.url"
+                :src="item.avatar ? item.avatar.url : ''"
                 :alt="item.name"
               >
             </v-avatar>
           </template>
           <template v-slot:item.actions="{ item }">
-            <goToWithSlug :item="item" />
+            <RedirectWithSlug :item="item" />
           </template>
         </v-data-table>
       </v-card>
@@ -42,7 +43,8 @@
 </template>
 
 <script>
-import goToWithSlug from '@/components/TableActions/goToWithSlug'
+import RedirectWithSlug from '@/components/Actions/RedirectWithSlug'
+import AuthenticatedActionButton from '@/components/Actions/AuthenticatedActionButton'
 
 export default {
   meta: {
@@ -54,7 +56,8 @@ export default {
   },
 
   components: {
-    goToWithSlug
+    AuthenticatedActionButton,
+    RedirectWithSlug
   },
 
   data: () => ({
@@ -77,7 +80,10 @@ export default {
     },
 
     characters () {
-      return this.$store.state.chara.listOfCharacters
+      const characters = this.$store.state.chara.listOfCharacters
+      return characters
+        ? characters.slice().filter(character => character.active === true)
+        : null
     }
   },
 
@@ -86,8 +92,17 @@ export default {
   },
 
   methods: {
-    handleClick (value) {
+    handleView (value) {
       this.$router.push({ path: `/characters/${value.slug}` })
+    },
+
+    handleCreate () {
+      this.$router.push({
+        path: 'content/add',
+        query: {
+          model: 'characters'
+        }
+      })
     }
   }
 }

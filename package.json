@@ -1,6 +1,7 @@
 {
   "name": "brumes-rp",
   "version": "1.0.0",
+  "targetDomain": "teso",
   "description": "Nuxt Template for Roleplaying Wikis with Strapi",
   "author": "Tak Castel",
   "private": true,
@@ -25,7 +26,8 @@
     "express": "^4.16.4",
     "js-cookie": "^2.2.1",
     "marked": "^0.8.2",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "vuetify-image-input": "^19.1.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.0.1",

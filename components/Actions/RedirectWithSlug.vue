@@ -1,5 +1,5 @@
 <template>
-  <v-tooltip left color="grey darken-4">
+  <v-tooltip left color="grey darken-3">
     <template v-slot:activator="{ on }">
       <v-btn @click.prevent.stop="goToCharacterSheet(item.slug)" v-on="on" icon small>
         <v-icon small>

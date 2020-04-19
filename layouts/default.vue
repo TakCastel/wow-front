@@ -2,8 +2,8 @@
   <v-app dark>
     <NavigationDrawer />
     <v-app-bar
-      :src="require('../assets/images/wallpapers/WOW_battle.jpg')"
-      color="#563028"
+      :src="theme ? theme.cover.url : undefined"
+      color="primary darken-1"
       fade-img-on-scroll
       shrink-on-scroll
       clipped-left
@@ -14,13 +14,13 @@
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
-          gradient="to top right, rgb(206, 132, 62, .8), rgb(10, 82, 156, .2)"
+          gradient="to top, rgba(31, 31, 31, .8) 25%, rgba(48, 48, 48, .2)"
         />
       </template>
       <v-app-bar-nav-icon @click.stop="handleDrawer" />
       <v-toolbar-title class="pl-3">
         <h1 class="title">
-          {{ appTitle }}
+          {{ appTitle ? appTitle : '...' }}
           <span class="subtitle-1 hidden-sm-and-down">
             - {{ $store.state.pageTitle }}
           </span>
@@ -62,6 +62,7 @@ import Breadcrumb from './components/Breadcrumb'
 import SideMenu from './components/SideMenu'
 import Notifications from './components/Notifications'
 import NavigationDrawer from './components/NavigationDrawer'
+import pkg from '@/package.json'
 
 export default {
   name: 'MainLayout',
@@ -74,14 +75,30 @@ export default {
   },
 
   data: () => ({
-    appTitle: 'World of Warcraft'
+    theme: ''
   }),
 
   computed: {
     ...mapState({
       isAuthenticated: state => state.auth.isAuthenticated,
       user: state => state.auth.session.user
-    })
+    }),
+
+    appTitle () {
+      return this.theme.title
+    }
+  },
+
+  beforeCreate () {
+    this.$axios
+      .get('/themes', {
+        params: {
+          'game.title': pkg.targetDomain
+        }
+      })
+      .then((response) => {
+        this.theme = response.data[0]
+      })
   },
 
   methods: {

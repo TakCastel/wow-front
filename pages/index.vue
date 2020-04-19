@@ -5,7 +5,7 @@
       color="info"
       dark
     >
-      Bienvenue sur la version alpha du site web. Des erreurs peuvent survenir. Nous ne garantissons pas la stabilité du site internet. Il n'existe malheureusement aucun moyen de remonter les bugs pour l'instant. Si vous souhaitez faire des retours, merci d'attendre les prochaines versions du site.
+      Bienvenue sur la version alpha du site web. Des erreurs peuvent survenir. Si vous souhaitez faire remonter des informations suites aux problèmes rencontrés, veuillez contacter l'administrateur de ce site.
     </v-alert>
     <div id="dashbord-main" class="mb-5">
       <!-- <v-row>

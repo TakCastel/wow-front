@@ -21,20 +21,20 @@ export default {
     //   ]
     // },
     {
+      icon: 'mdi-account-box-multiple',
+      title: 'Personnages',
+      to: '/characters'
+    },
+    {
       icon: 'mdi-book-multiple',
       title: 'Trames',
       to: '/wiki'
-    },
+    }
     // {
     //   icon: 'mdi-timer-sand-full',
     //   title: 'Chronologie',
     //   to: '/timeline'
     // },
-    {
-      icon: 'mdi-contacts',
-      title: 'Personnages',
-      to: '/characters'
-    }
     // {
     //   icon: 'mdi-calendar',
     //   title: 'Evènements',

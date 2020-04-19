@@ -1,6 +1,10 @@
 <template>
   <v-row>
-    <v-col cols="8">
+    <v-col
+      :order="$vuetify.breakpoint.xsOnly ? 3 : 1"
+      xs="12"
+      sm="8"
+    >
       <v-skeleton-loader
         :loading="isLoading"
         height="300px"
@@ -9,12 +13,20 @@
         <v-card>
           <v-toolbar color="primary">
             <v-toolbar-title>{{ character.name }}</v-toolbar-title>
+            <v-spacer />
+            <v-btn v-if="isAuthenticated" @click="handleEdit" icon>
+              <v-icon>
+                mdi-pencil
+              </v-icon>
+            </v-btn>
+            <ConfirmDeletionModale v-if="isAuthenticated" :id="character.id" model="characters" />
           </v-toolbar>
-          <v-card-text v-if="character.description" v-html="compiledMarkdown(character.description)" class="article mt-5" />
+          <v-card-text v-if="character.description" v-html="compiledMarkdown(character.description)" class="article mt-5 white--text" />
         </v-card>
       </v-skeleton-loader>
     </v-col>
-    <v-col cols="4">
+
+    <v-col xs="12" sm="4" order="2">
       <v-skeleton-loader
         :loading="isLoading"
         type="image, article"
@@ -25,10 +37,7 @@
             class="white--text align-end"
             height="auto"
           />
-          <v-card-title class="subtitle-2 pa-2">
-            Légende
-          </v-card-title>
-          <v-card-text v-html="character.infobox" class="pa-2 pt-0" />
+          <v-card-text v-html="character.infobox" class="pa-3 white--text" />
         </v-card>
       </v-skeleton-loader>
       <TalentCard v-for="talent in sortedTalents" :key="talent.id" :talent="talent" />
@@ -38,6 +47,7 @@
 
 <script>
 import marked from 'marked'
+import ConfirmDeletionModale from '@/components/Actions/ConfirmDeletionModale'
 import TalentCard from '@/components/Cards/TalentCard'
 
 export default {
@@ -57,10 +67,15 @@ export default {
   },
 
   components: {
+    ConfirmDeletionModale,
     TalentCard
   },
 
   computed: {
+    isAuthenticated () {
+      return this.$store.state.auth.isAuthenticated
+    },
+
     character () {
       return this.$store.state.chara.currentCharacter ? this.$store.state.chara.currentCharacter : false
     },
@@ -87,6 +102,16 @@ export default {
   methods: {
     compiledMarkdown (text) {
       return marked(text)
+    },
+
+    handleEdit () {
+      this.$router.push({
+        path: '/content/edit',
+        query: {
+          model: 'characters',
+          slug: this.$route.params.slug
+        }
+      })
     }
   }
 }
