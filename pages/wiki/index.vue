@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import AuthenticatedActionButton from '@/components/AuthenticatedActionButton'
+import AuthenticatedActionButton from '@/components/Actions/AuthenticatedActionButton'
 import StoryCard from '@/components/Cards/StoryCard'
 
 export default {
@@ -80,7 +80,13 @@ export default {
 
   methods: {
     handleCreateEvent () {
-      this.$router.push({ path: 'content/add', query: { category: 'events' } })
+      this.$router.push({
+        path: 'content/add',
+        query: {
+          model: 'articles',
+          category: 'events'
+        }
+      })
     },
 
     handleCreateReport () {

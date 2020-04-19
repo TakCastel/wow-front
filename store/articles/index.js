@@ -17,7 +17,7 @@ export const actions = {
     this.$axios
       .get('/articles', {
         params: {
-          _sort: 'created_At:desc',
+          _sort: 'createdAt:desc',
           'game.title': pkg.targetDomain
         }
       })
@@ -78,14 +78,35 @@ export const actions = {
 
       const formData = new FormData()
       formData.append('data', JSON.stringify(article))
-      formData.append('files.thumbnail', payload.file)
+      if (payload.file) { formData.append(`files.thumbnail`, payload.file) }
 
       // Axios /POST article method
-      await this.$axios.post('/articles', formData)
+      await this.$axios.post(`/articles/`, formData)
 
       dispatch(
         'notifs/newEventOccurs',
         'Votre article a été publié avec succès.',
+        { root: true }
+      )
+    } catch (err) {
+      console.error(err)
+    } finally {
+      commit('SET_PUBLICATION_LOADING', false)
+    }
+  },
+
+  async editArticle ({ commit, dispatch }, payload) {
+    commit('SET_PUBLICATION_LOADING', true)
+    try {
+      const formData = new FormData()
+      formData.append('data', JSON.stringify(payload.data))
+      if (payload.file) { formData.append(`files.thumbnail`, payload.file) }
+
+      await this.$axios.put(`/articles/${payload.id}`, formData)
+
+      dispatch(
+        'notifs/newEventOccurs',
+        'Votre article a été édité avec succès.',
         { root: true }
       )
     } catch (err) {

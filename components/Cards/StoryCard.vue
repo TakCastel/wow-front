@@ -1,6 +1,6 @@
 <template>
   <v-col xs="12" sm="6" md="4">
-    <v-card class="rounded-5">
+    <v-card @click="handleClick" class="rounded-5">
       <v-img
         :src="caption"
         :lazy-src="caption"
@@ -18,7 +18,7 @@
             </div>
           </div>
           <div class="d-flex justify-space-between align-center">
-            <v-btn @click="handleClick" outlined rounded>
+            <v-btn @click="handleClick" outlined rounded text>
               Lire
             </v-btn>
             <v-tooltip color="grey darken-4" left>

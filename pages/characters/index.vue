@@ -23,19 +23,18 @@
                            'items-per-page-all-text': 'Tous'}"
           :loading="isLoading"
           @click:row="handleView"
-          class="grey darken-4"
           loading-text="Chargement en cours..."
         >
           <template v-slot:item.avatar="{ item }">
             <v-avatar size="36">
               <img
-                :src="item.avatar.url"
+                :src="item.avatar ? item.avatar.url : ''"
                 :alt="item.name"
               >
             </v-avatar>
           </template>
           <template v-slot:item.actions="{ item }">
-            <goToWithSlug :item="item" />
+            <RedirectWithSlug :item="item" />
           </template>
         </v-data-table>
       </v-card>
@@ -44,8 +43,8 @@
 </template>
 
 <script>
-import goToWithSlug from '@/components/TableActions/goToWithSlug'
-import AuthenticatedActionButton from '@/components/AuthenticatedActionButton'
+import RedirectWithSlug from '@/components/Actions/RedirectWithSlug'
+import AuthenticatedActionButton from '@/components/Actions/AuthenticatedActionButton'
 
 export default {
   meta: {
@@ -58,7 +57,7 @@ export default {
 
   components: {
     AuthenticatedActionButton,
-    goToWithSlug
+    RedirectWithSlug
   },
 
   data: () => ({
@@ -81,7 +80,10 @@ export default {
     },
 
     characters () {
-      return this.$store.state.chara.listOfCharacters
+      const characters = this.$store.state.chara.listOfCharacters
+      return characters
+        ? characters.slice().filter(character => character.active === true)
+        : null
     }
   },
 
@@ -95,7 +97,12 @@ export default {
     },
 
     handleCreate () {
-      alert(`Cette action n'est pas supportée par la version alpha`)
+      this.$router.push({
+        path: 'content/add',
+        query: {
+          model: 'characters'
+        }
+      })
     }
   }
 }

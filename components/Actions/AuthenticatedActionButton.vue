@@ -13,7 +13,7 @@
     </v-icon>
     {{ text }}
   </v-btn>
-  </div>
+  <!-- </div> -->
   <!-- </template>
     <span>Vous devez vous connecter pour réaliser cette action</span>
   </v-tooltip> -->
