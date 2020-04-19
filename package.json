@@ -1,7 +1,7 @@
 {
   "name": "brumes-rp",
   "version": "1.0.0",
-  "targetDomain": "teso",
+  "targetDomain": "wow",
   "description": "Nuxt Template for Roleplaying Wikis with Strapi",
   "author": "Tak Castel",
   "private": true,
